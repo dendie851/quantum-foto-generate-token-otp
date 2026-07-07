@@ -18,6 +18,7 @@ Welcome to the **Quantum Laser Gun Token Generator & OTP System**! This reposito
   - [3.6 Evidence 6: Docker Microservice Deployment Stack (1-docker-deployment-stack-tech.png)](#36-evidence-6-docker-microservice-deployment-stack-1-docker-deployment-stack-techpng)
   - [3.7 Evidence 7: Redis Cache Token Pool (4-redis-pool-token.png)](#37-evidence-7-redis-cache-token-pool-4-redis-pool-tokenpng)
   - [3.8 Evidence 8: Node.js HTTP API Get Token Endpoint (5-node-js-api-get-token.png)](#38-evidence-8-node-js-http-api-get-token-endpoint-5-node-js-api-get-tokenpng)
+- [4. Demo Video](#4-demo-video)
 
 ---
 
@@ -109,3 +110,11 @@ This screenshot displays the Redis CLI command line window.
 This image shows the client consuming a token via the HTTP API.
 ![Node.js Express API Response](ss/5-node-js-api-get-token.png)
 - **What it shows**: A request to `http://localhost:3000/api/get-token` returning a JSON response with status `success` and the retrieved token. The terminal log confirms that once the token is requested, it is immediately deleted from Redis (`SPOP`), ensuring that each token can only be used once.
+
+---
+
+## 4. Demo Video
+
+You can watch the live demonstration of the hardware token generation process, showing how the laser triggers the physical system and produces OTPs, on YouTube:
+
+👉 **[Watch the Quantum Laser Token Generator Demo on YouTube Shorts](https://www.youtube.com/shorts/btlJHGOxRJk)**
