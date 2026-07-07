@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # 1. MQTT Broker Service
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: mqtt_broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - trng-network
+
+  # 2. Redis Cache Service
+  redis-cache:
+    image: redis:7-alpine
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
+    networks:
+      - trng-network
+
+  # 3. Node.js Worker (cache-token.js)
+  cache-worker:
+    build: .
+    container_name: cache_worker
+    command: node cache-token.js
+    restart: always
+    depends_on:
+      - mqtt-broker
+      - redis-cache
+    networks:
+      - trng-network
+
+  # 4. Node.js API Server (get-token.js)
+  api-server:
+    build: .
+    container_name: api_server
+    command: node get-token.js
+    ports:
+      - "3000:3000" # Membuka port 3000 agar bisa diakses dari luar container oleh aplikasi/client
+    restart: always
+    depends_on:
+      - redis-cache
+    networks:
+      - trng-network
+
+networks:
+  trng-network:
+    driver: bridge

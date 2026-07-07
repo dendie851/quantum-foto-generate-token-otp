@@ -1,0 +1,15 @@
+{
+  "name": "quantum-foto-generate-token-otp",
+  "version": "1.0.0",
+  "description": "Quantum token generator with MQTT, Redis, and Express",
+  "main": "get-token.js",
+  "scripts": {
+    "start-cache": "node cache-token.js",
+    "start-api": "node get-token.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mqtt": "^5.3.0",
+    "redis": "^4.6.8"
+  }
+}
